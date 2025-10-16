@@ -1,0 +1,16 @@
+langchain
+langchain-community
+langchain-huggingface
+langgraph
+faiss-cpu
+python-dotenv
+beautifulsoup4
+requests
+streamlit
+wikipedia
+pydantic
+langchain-google-genai
+ipykernel
+sentence-transformers
+pypdf
+rank_bm25
