@@ -95,11 +95,12 @@ def main():
             with st.spinner("Loading system..."):
                 temp_file_paths = []  # List to store all temp file paths
                 for uploaded_file in files:
-                    # Create a temporary file for each uploaded file
-                    with tempfile.NamedTemporaryFile(delete=False, suffix=Path(uploaded_file.name).suffix) as tmp_file:
+                    temp_dir = tempfile.gettempdir()
+                    temp_file_path = os.path.join(temp_dir, uploaded_file.name)
+                    with open(temp_file_path, "wb") as tmp_file:
                         tmp_file.write(uploaded_file.read())
-                        tmp_file.flush()
-                        temp_file_paths.append(tmp_file.name)
+                    temp_file_paths.append(temp_file_path)
+                    
                 rag_system, num_chunks = initialize_rag(temp_file_paths)
                 if rag_system:
                     st.session_state.rag_system = rag_system
